@@ -3,8 +3,6 @@
 **Modern, AI-powered, Duolingo-like language learning platform.**
 React + TypeScript frontend, FastAPI + PostgreSQL backend, live lesson generation with Google Gemini 3.1 Flash Lite.
 
-![CookieLearn](https://images.unsplash.com/photo-1772371272174-392cf9cfabae?w=800)
-
 ## ✨ Features
 
 ### 🎯 Learning System
@@ -163,13 +161,6 @@ yarn start
 
 ---
 
-## 🔐 Demo Accounts
-
-- **Student**: `demo@cookielearn.app` / `demo123`
-- **Admin**: `admin@cookielearn.app` / `admin123`
-
----
-
 ## 🌐 API
 
 Swagger UI: `http://localhost:8001/docs`
@@ -217,10 +208,6 @@ Or deploy both as `Docker` services.
 
 ---
 
-## 📸 Screenshots
-
-Landing → Dashboard (skill tree) → Lesson player (7 question types) → AI Chat → Stats charts → Leaderboard → Admin.
-
 ---
 
 ## 📜 License
@@ -230,3 +217,4 @@ MIT — Open source for portfolio purposes.
 ---
 
 Powered by [Google Gemini 3.1](https://ai.google.dev/)
+
