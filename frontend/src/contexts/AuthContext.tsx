@@ -1,4 +1,3 @@
-// Authentication context - manages user state, login, register, logout
 import { createContext, useContext, useEffect, useState, ReactNode, useCallback } from "react";
 import { api, getToken, setToken } from "@/lib/api";
 import type { User } from "@/types";
@@ -19,15 +18,17 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
 
-  // Fetch the current user from the backend on mount (if a token exists)
   const refresh = useCallback(async () => {
     if (!getToken()) { setLoading(false); return; }
     try {
       const { data } = await api.get<User>("/auth/me");
       setUser(data);
-    } catch {
-      setToken(null);
-      setUser(null);
+    } catch (err: any) {
+      if (err?.response?.status === 401) {
+        setToken(null);
+        setUser(null);
+      }
+      // network/CORS/timeout gibi hatalarda token'a dokunma, oturumu koru
     } finally {
       setLoading(false);
     }
