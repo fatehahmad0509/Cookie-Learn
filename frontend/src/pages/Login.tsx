@@ -1,4 +1,3 @@
-// Login page with email/password form and demo account fill button
 import { FormEvent, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "sonner";
@@ -17,19 +16,13 @@ export default function Login() {
     setLoading(true);
     try {
       await login(email.trim().toLowerCase(), password);
-      toast.success("Welcome! 🍪");
+      toast.success("Hoşgeldin! 🍪");
       nav("/dashboard");
     } catch (err: any) {
-      toast.error(err?.response?.data?.detail || "Login failed");
+      toast.error(err?.response?.data?.detail || "Giriş başarısız");
     } finally {
       setLoading(false);
     }
-  }
-
-  // Fill the form with demo credentials
-  function demo() {
-    setEmail("demo@cookielearn.app");
-    setPassword("demo123");
   }
 
   return (
@@ -39,11 +32,11 @@ export default function Login() {
           <span className="text-3xl">🍪</span> CookieLearn
         </Link>
         <div className="card-surface p-8">
-          <h1 className="font-heading text-3xl font-black mb-1">Welcome back</h1>
-          <p className="text-muted-foreground mb-6">Continue learning where you left off.</p>
+          <h1 className="font-heading text-3xl font-black mb-1">Tekrar hoşgeldin</h1>
+          <p className="text-muted-foreground mb-6">Öğrenmene kaldığın yerden devam et.</p>
           <form onSubmit={submit} className="space-y-4">
             <div>
-              <label className="text-xs font-heading font-bold uppercase tracking-widest text-muted-foreground">Email</label>
+              <label className="text-xs font-heading font-bold uppercase tracking-widest text-muted-foreground">E-posta</label>
               <input
                 data-testid="login-email"
                 type="email" required autoFocus
@@ -54,7 +47,7 @@ export default function Login() {
               />
             </div>
             <div>
-              <label className="text-xs font-heading font-bold uppercase tracking-widest text-muted-foreground">Password</label>
+              <label className="text-xs font-heading font-bold uppercase tracking-widest text-muted-foreground">Şifre</label>
               <input
                 data-testid="login-password"
                 type="password" required minLength={6}
@@ -65,14 +58,11 @@ export default function Login() {
               />
             </div>
             <button data-testid="login-submit" disabled={loading} className="btn-primary w-full">
-              {loading ? <Loader2 className="w-5 h-5 animate-spin" /> : <><LogIn className="w-5 h-5" /> Login</>}
+              {loading ? <Loader2 className="w-5 h-5 animate-spin" /> : <><LogIn className="w-5 h-5" /> Giriş Yap</>}
             </button>
           </form>
-          <div className="mt-4 flex items-center gap-2">
-            <button onClick={demo} className="btn-outline flex-1 text-sm" data-testid="login-fill-demo">Fill demo account</button>
-          </div>
           <div className="mt-6 text-sm text-center text-muted-foreground">
-            Don't have an account? <Link to="/register" className="text-primary font-heading font-bold" data-testid="login-register-link">Register</Link>
+            Hesabın yok mu? <Link to="/register" className="text-primary font-heading font-bold" data-testid="login-register-link">Kayıt ol</Link>
           </div>
         </div>
       </div>
